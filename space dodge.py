@@ -38,7 +38,7 @@ def draw(player, elapsed_time, stars):
 def main():
     run = True
 
-    player = pygame.Rect(200, HEIGHT - PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT)
+    player = pygame.Rect(650, HEIGHT - PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT)
     clock = pygame.time.Clock()
 
     start_time = time.time()
@@ -62,6 +62,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.quit()
                 break
 
         keys = pygame.key.get_pressed()
@@ -85,7 +86,7 @@ def main():
             break
         draw(player, elapsed_time, stars)
 
-    pygame.quit()
+    main()
 
 
 if __name__ == "__main__":
