@@ -1,5 +1,6 @@
 import pygame
 import os
+
 pygame.font.init()
 pygame.mixer.init()
 WIDTH, HEIGHT = 1365, 700
@@ -11,7 +12,7 @@ YELLOW = (255, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-BORDER = pygame.Rect(WIDTH//2 - 5, 0, 10, HEIGHT)
+BORDER = pygame.Rect(WIDTH // 2 - 5, 0, 10, HEIGHT)
 BULLET_HIT_SOUND = pygame.mixer.Sound("electro_hit.wav")
 BULLET_FIRE_SOUND = pygame.mixer.Sound("laser_shot.wav")
 
@@ -30,9 +31,11 @@ YELLOW_HIT = pygame.USEREVENT + 1
 PURPLE_HIT = pygame.USEREVENT + 2
 
 SPACESHIP_1_IMAGE = pygame.image.load(os.path.join("space_ship1.png"))
-SPACESHIP_1 = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_1_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
+SPACESHIP_1 = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_1_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)),
+                                      270)
 SPACESHIP_2_IMAGE = pygame.image.load(os.path.join("space_ship2.png"))
-SPACESHIP_2 = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_2_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
+SPACESHIP_2 = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_2_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)),
+                                      90)
 
 SPACE = pygame.transform.scale(pygame.image.load(os.path.join("space.jpg")), (WIDTH, HEIGHT))
 
@@ -97,7 +100,7 @@ def handle_bullets(yellow_bullets, purple_bullets, yellow, purple):
 
 def draw_winner(text):
     draw_text = WINNER_FONT.render(text, 1, WHITE)
-    WIN.blit(draw_text, (WIDTH/2 - draw_text.get_width()/2, HEIGHT/2 - draw_text.get_height()/2))
+    WIN.blit(draw_text, (WIDTH / 2 - draw_text.get_width() / 2, HEIGHT / 2 - draw_text.get_height() / 2))
     pygame.display.update()
     pygame.time.delay(2000)
 
@@ -120,11 +123,11 @@ def main():
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
-                    bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 5)
+                    bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height // 2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
                 if event.key == pygame.K_RCTRL and len(purple_bullets) < MAX_BULLETS:
-                    bullet = pygame.Rect(purple.x, purple.y + purple.height//2 - 2, 10, 5)
+                    bullet = pygame.Rect(purple.x, purple.y + purple.height // 2 - 2, 10, 5)
                     purple_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
             if event.type == PURPLE_HIT:
